@@ -12,8 +12,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-
-    final List<Widget> components = [Authentication()];
+  final List<Widget> components = [Authentication()];
 
   @override
   void initState() {
@@ -24,20 +23,19 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(
-          title: const Text('flutterAmplify'),
-        ),
-        drawer: Drawer(
-          child: ListView(
-            children: <Widget>[
-              ListTile(
-                title: Text('Authentication'),
-              )
-            ],
+          appBar: AppBar(
+            title: const Text('flutterAmplify'),
           ),
-        ),
-        body: components[0]
-      ),
+          drawer: Drawer(
+            child: ListView(
+              children: <Widget>[
+                ListTile(
+                  title: Text('Authentication'),
+                )
+              ],
+            ),
+          ),
+          body: components[0]),
     );
   }
 }

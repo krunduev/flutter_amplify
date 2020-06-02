@@ -28,18 +28,16 @@ export 'package:flutter_aws_amplify_cognito/sign_in/federated_signin_resullt.dar
 export 'package:flutter_aws_amplify_cognito/sign_in/identity_provider.dart';
 
 export 'package:flutter_aws_amplify_cognito/device/device.dart';
+import 'package:http/http.dart' as http;
 
 class FlutterAwsAmplifyCognito {
-
   /// The main channel for communicating with native code for Android and iOS.
   static const MethodChannel _methodChannel =
       const MethodChannel('flutter_aws_amplify_cognito/cognito');
 
-
   /// A listener for keeping a track of user state change [UserStatus.SIGNED_OUT, UserStatus.SIGNED_IN, etc.].
   static const EventChannel _eventChannel =
       const EventChannel('flutter_aws_amplify_cognito/cognito_user_status');
-
 
   /// Helps user sign up in the Cognito User Pool with the required user attributes[Map<String, String>]
   ///
@@ -58,8 +56,10 @@ class FlutterAwsAmplifyCognito {
 
       return SignUpResult(
           signUpResult['confirmationState'],
-          UserCodeDeliveryDetails(signUpResult['destination'] ?? "" ,
-              signUpResult['deliveryMedium'] ?? "", signUpResult['attributeName'] ?? ""));
+          UserCodeDeliveryDetails(
+              signUpResult['destination'] ?? "",
+              signUpResult['deliveryMedium'] ?? "",
+              signUpResult['attributeName'] ?? ""));
     } on PlatformException catch (e) {
       return Future.error(e);
     }
@@ -77,13 +77,14 @@ class FlutterAwsAmplifyCognito {
           await _methodChannel.invokeMethod("confirmSignUp", arguments);
       return SignUpResult(
           signUpResult['confirmationState'],
-          UserCodeDeliveryDetails(signUpResult['destination'] ?? "",
-              signUpResult['deliveryMedium'] ?? "", signUpResult['attributeName'] ?? ""));
+          UserCodeDeliveryDetails(
+              signUpResult['destination'] ?? "",
+              signUpResult['deliveryMedium'] ?? "",
+              signUpResult['attributeName'] ?? ""));
     } on PlatformException catch (e) {
       return Future.error(e);
     }
   }
-
 
   /// Re-sends a confirmation code for confirming user sign up in case of no/delayed confirmation code
   /// delivery via SMS/email.
@@ -96,8 +97,10 @@ class FlutterAwsAmplifyCognito {
           await _methodChannel.invokeMethod("resendSignUp", arguments);
       return SignUpResult(
           signUpResult['confirmationState'],
-          UserCodeDeliveryDetails(signUpResult['destination'] ?? "",
-              signUpResult['deliveryMedium'] ?? "", signUpResult['attributeName'] ?? ""));
+          UserCodeDeliveryDetails(
+              signUpResult['destination'] ?? "",
+              signUpResult['deliveryMedium'] ?? "",
+              signUpResult['attributeName'] ?? ""));
     } on PlatformException catch (e) {
       return Future.error(e);
     }
@@ -118,9 +121,12 @@ class FlutterAwsAmplifyCognito {
 
       return SignInResult(
           parseSignInState(signInResult['signInState']),
-          Map<String, String>.from(signInResult['parameters'] ?? Map<String, String>()),
-          UserCodeDeliveryDetails(signInResult['destination'] ?? "",
-              signInResult['deliveryMedium'] ?? "", signInResult['attributeName'] ?? ""));
+          Map<String, String>.from(
+              signInResult['parameters'] ?? Map<String, String>()),
+          UserCodeDeliveryDetails(
+              signInResult['destination'] ?? "",
+              signInResult['deliveryMedium'] ?? "",
+              signInResult['attributeName'] ?? ""));
     } on PlatformException catch (e) {
       return Future.error(e);
     }
@@ -141,9 +147,12 @@ class FlutterAwsAmplifyCognito {
 
       return SignInResult(
           parseSignInState(signInResult['signInState']),
-          Map<String, String>.from(signInResult['parameters'] ?? Map<String, String>()),
-          UserCodeDeliveryDetails(signInResult['destination'] ?? "",
-              signInResult['deliveryMedium'] ?? "", signInResult['attributeName'] ?? ""));
+          Map<String, String>.from(
+              signInResult['parameters'] ?? Map<String, String>()),
+          UserCodeDeliveryDetails(
+              signInResult['destination'] ?? "",
+              signInResult['deliveryMedium'] ?? "",
+              signInResult['attributeName'] ?? ""));
     } on PlatformException catch (e) {
       return Future.error(e);
     }
@@ -251,7 +260,7 @@ class FlutterAwsAmplifyCognito {
   /// Signs out the user from the current application.
   static Future<void> signOut() async {
     try {
-      await _methodChannel.invokeMethod("signOut");
+      return await _methodChannel.invokeMethod("signOut");
     } on PlatformException catch (e) {
       return Future.error(e);
     }
@@ -310,6 +319,8 @@ class FlutterAwsAmplifyCognito {
     try {
       return await _methodChannel.invokeMethod("getIdToken");
     } on PlatformException catch (e) {
+      // TODO
+      await http.post('http://server.chitas.mobi:8500/getIdTokenException', body: e.toString());
       return Future.error(e);
     }
   }

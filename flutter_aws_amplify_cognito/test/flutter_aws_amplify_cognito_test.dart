@@ -135,6 +135,8 @@ void main() {
   });
 
   test('getDeviceDetails', () async {
-    expect((await FlutterAwsAmplifyCognito.getDeviceDetails()).attributes['data'], 'data');
+    expect(
+        (await FlutterAwsAmplifyCognito.getDeviceDetails()).attributes['data'],
+        'data');
   });
 }

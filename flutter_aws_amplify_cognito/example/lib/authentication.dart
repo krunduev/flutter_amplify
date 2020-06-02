@@ -209,28 +209,29 @@ class _AuthenticationState extends State<Authentication> {
                 },
                 child: Text('Check'),
               )),
-            ExpandablePanel(
-                header: Text(
-                    'getRefreshToken: $getAccessToken',
-                    style: TextStyle(fontSize: 17),
-                ),
-                theme: ExpandableThemeData(
-                    tapHeaderToExpand: true,
-                    headerAlignment: ExpandablePanelHeaderAlignment.center,
-                ),
-                expanded: RaisedButton(
-                    onPressed: () {
-                        FlutterAwsAmplifyCognito.getRefreshToken().then((refreshToken) {
-                            print(refreshToken);
+          ExpandablePanel(
+              header: Text(
+                'getRefreshToken: $getAccessToken',
+                style: TextStyle(fontSize: 17),
+              ),
+              theme: ExpandableThemeData(
+                tapHeaderToExpand: true,
+                headerAlignment: ExpandablePanelHeaderAlignment.center,
+              ),
+              expanded: RaisedButton(
+                onPressed: () {
+                  FlutterAwsAmplifyCognito.getRefreshToken()
+                      .then((refreshToken) {
+                    print(refreshToken);
 //                    setState(() {
 //                      identityId = identityId;
 //                    });
-                        }).catchError((error) {
-                            print(error);
-                        });
-                    },
-                    child: Text('Check'),
-                )),
+                  }).catchError((error) {
+                    print(error);
+                  });
+                },
+                child: Text('Check'),
+              )),
           ExpandablePanel(
               header: Text(
                 'getAWSCredentials: $getAccessToken',
@@ -277,201 +278,203 @@ class _AuthenticationState extends State<Authentication> {
                 },
                 child: Text('Check'),
               )),
-            ExpandablePanel(
-                header: Text(
-                    'getDeviceDetails: $getAccessToken',
-                    style: TextStyle(fontSize: 17),
-                ),
-                theme: ExpandableThemeData(
-                    tapHeaderToExpand: true,
-                    headerAlignment: ExpandablePanelHeaderAlignment.center,
-                ),
-                expanded: RaisedButton(
-                    onPressed: () {
-                        FlutterAwsAmplifyCognito.getDeviceDetails().then((tracked) {
-                            print(tracked);
+          ExpandablePanel(
+              header: Text(
+                'getDeviceDetails: $getAccessToken',
+                style: TextStyle(fontSize: 17),
+              ),
+              theme: ExpandableThemeData(
+                tapHeaderToExpand: true,
+                headerAlignment: ExpandablePanelHeaderAlignment.center,
+              ),
+              expanded: RaisedButton(
+                onPressed: () {
+                  FlutterAwsAmplifyCognito.getDeviceDetails().then((tracked) {
+                    print(tracked);
 //                    setState(() {
 //                      identityId = identityId;
 //                    });
-                        }).catchError((error) {
-                            print(error);
-                        });
-                    },
-                    child: Text('Check'),
-                )),
-            ExpandablePanel(
-                header: Text(
-                    'sign up: $getAccessToken',
-                    style: TextStyle(fontSize: 17),
-                ),
-                theme: ExpandableThemeData(
-                    tapHeaderToExpand: true,
-                    headerAlignment: ExpandablePanelHeaderAlignment.center,
-                ),
-                expanded: RaisedButton(
-                    onPressed: () {
-                        Map<String, String> data = Map<String, String>();
-                        data['email'] = 'yzvishal.vd@gmail.com';
-                        FlutterAwsAmplifyCognito.signUp("yzvishal.vd@gmail.com", "vishal69123", data).then((tracked) {
-                            print(tracked.confirmationState);
-                            print(tracked.userCodeDeliveryDetails.destination);
+                  }).catchError((error) {
+                    print(error);
+                  });
+                },
+                child: Text('Check'),
+              )),
+          ExpandablePanel(
+              header: Text(
+                'sign up: $getAccessToken',
+                style: TextStyle(fontSize: 17),
+              ),
+              theme: ExpandableThemeData(
+                tapHeaderToExpand: true,
+                headerAlignment: ExpandablePanelHeaderAlignment.center,
+              ),
+              expanded: RaisedButton(
+                onPressed: () {
+                  Map<String, String> data = Map<String, String>();
+                  data['email'] = 'yzvishal.vd@gmail.com';
+                  FlutterAwsAmplifyCognito.signUp(
+                          "yzvishal.vd@gmail.com", "vishal69123", data)
+                      .then((tracked) {
+                    print(tracked.confirmationState);
+                    print(tracked.userCodeDeliveryDetails.destination);
 
 //                    setState(() {
 //                      identityId = identityId;
 //                    });
-                        }).catchError((error) {
-                            print(error);
-                        });
-                    },
-                    child: Text('Check'),
-                )
-            ),
-            ExpandablePanel(
-                header: Text(
-                    'confirm sign up: $getAccessToken',
-                    style: TextStyle(fontSize: 17),
-                ),
-                theme: ExpandableThemeData(
-                    tapHeaderToExpand: true,
-                    headerAlignment: ExpandablePanelHeaderAlignment.center,
-                ),
-                expanded: RaisedButton(
-                    onPressed: () {
-                        FlutterAwsAmplifyCognito.confirmSignUp("yzvishal.vd@gmail.com", "854542").then((tracked) {
-                            print(tracked.confirmationState);
-                            print(tracked.userCodeDeliveryDetails.destination);
+                  }).catchError((error) {
+                    print(error);
+                  });
+                },
+                child: Text('Check'),
+              )),
+          ExpandablePanel(
+              header: Text(
+                'confirm sign up: $getAccessToken',
+                style: TextStyle(fontSize: 17),
+              ),
+              theme: ExpandableThemeData(
+                tapHeaderToExpand: true,
+                headerAlignment: ExpandablePanelHeaderAlignment.center,
+              ),
+              expanded: RaisedButton(
+                onPressed: () {
+                  FlutterAwsAmplifyCognito.confirmSignUp(
+                          "yzvishal.vd@gmail.com", "854542")
+                      .then((tracked) {
+                    print(tracked.confirmationState);
+                    print(tracked.userCodeDeliveryDetails.destination);
 //                    setState(() {
 //                      identityId = identityId;
 //                    });
-                        }).catchError((error) {
-                            print(error);
-                        });
-                    },
-                    child: Text('Check'),
-                )
-            ),
-            ExpandablePanel(
-                header: Text(
-                    'sign in: $getAccessToken',
-                    style: TextStyle(fontSize: 17),
-                ),
-                theme: ExpandableThemeData(
-                    tapHeaderToExpand: true,
-                    headerAlignment: ExpandablePanelHeaderAlignment.center,
-                ),
-                expanded: RaisedButton(
-                    onPressed: () {
-                        FlutterAwsAmplifyCognito.addUserStateListener
-                        .listen((UserStatus status) {
-                            print("listener");
-                            print(status);
-                        });
-                        FlutterAwsAmplifyCognito.signIn("yzvishal.vd@gmail.com", "vishal69").then((tracked) {
-                            print("sign in k andar");
-                            print(tracked.signInState);
-                            print(tracked.parameters);
+                  }).catchError((error) {
+                    print(error);
+                  });
+                },
+                child: Text('Check'),
+              )),
+          ExpandablePanel(
+              header: Text(
+                'sign in: $getAccessToken',
+                style: TextStyle(fontSize: 17),
+              ),
+              theme: ExpandableThemeData(
+                tapHeaderToExpand: true,
+                headerAlignment: ExpandablePanelHeaderAlignment.center,
+              ),
+              expanded: RaisedButton(
+                onPressed: () {
+                  FlutterAwsAmplifyCognito.addUserStateListener
+                      .listen((UserStatus status) {
+                    print("listener");
+                    print(status);
+                  });
+                  FlutterAwsAmplifyCognito.signIn(
+                          "yzvishal.vd@gmail.com", "vishal69")
+                      .then((tracked) {
+                    print("sign in k andar");
+                    print(tracked.signInState);
+                    print(tracked.parameters);
 //                    setState(() {
 //                      identityId = identityId;
 //                    });
-                        }).catchError((error) {
-                            print(error);
-                        });
-                    },
-                    child: Text('Check'),
-                )
-            ),
-            ExpandablePanel(
-                header: Text(
-                    'sign out: $getAccessToken',
-                    style: TextStyle(fontSize: 17),
-                ),
-                theme: ExpandableThemeData(
-                    tapHeaderToExpand: true,
-                    headerAlignment: ExpandablePanelHeaderAlignment.center,
-                ),
-                expanded: RaisedButton(
-                    onPressed: () {
-                        FlutterAwsAmplifyCognito.signOut().then((tracked) {
-
+                  }).catchError((error) {
+                    print(error);
+                  });
+                },
+                child: Text('Check'),
+              )),
+          ExpandablePanel(
+              header: Text(
+                'sign out: $getAccessToken',
+                style: TextStyle(fontSize: 17),
+              ),
+              theme: ExpandableThemeData(
+                tapHeaderToExpand: true,
+                headerAlignment: ExpandablePanelHeaderAlignment.center,
+              ),
+              expanded: RaisedButton(
+                onPressed: () {
+                  FlutterAwsAmplifyCognito.signOut().then((tracked) {
 //                    setState(() {
 //                      identityId = identityId;
 //                    });
-                        }).catchError((error) {
-                            print(error);
-                        });
-                    },
-                    child: Text('Check'),
-                )
-            ),
-            ExpandablePanel(
-                header: Text(
-                    'sign out globally: $getAccessToken',
-                    style: TextStyle(fontSize: 17),
-                ),
-                theme: ExpandableThemeData(
-                    tapHeaderToExpand: true,
-                    headerAlignment: ExpandablePanelHeaderAlignment.center,
-                ),
-                expanded: RaisedButton(
-                    onPressed: () {
-                        FlutterAwsAmplifyCognito.signOutGlobally().then((tracked) {
-                            print(tracked);
+                  }).catchError((error) {
+                    print(error);
+                  });
+                },
+                child: Text('Check'),
+              )),
+          ExpandablePanel(
+              header: Text(
+                'sign out globally: $getAccessToken',
+                style: TextStyle(fontSize: 17),
+              ),
+              theme: ExpandableThemeData(
+                tapHeaderToExpand: true,
+                headerAlignment: ExpandablePanelHeaderAlignment.center,
+              ),
+              expanded: RaisedButton(
+                onPressed: () {
+                  FlutterAwsAmplifyCognito.signOutGlobally().then((tracked) {
+                    print(tracked);
 //                    setState(() {
 //                      identityId = identityId;
 //                    });
-                        }).catchError((error) {
-                            print(error);
-                        });
-                    },
-                    child: Text('Check'),
-                )
-            ),
-            ExpandablePanel(
-                header: Text(
-                    'forgot password: $getAccessToken',
-                    style: TextStyle(fontSize: 17),
-                ),
-                theme: ExpandableThemeData(
-                    tapHeaderToExpand: true,
-                    headerAlignment: ExpandablePanelHeaderAlignment.center,
-                ),
-                expanded: RaisedButton(
-                    onPressed: () {
-                        FlutterAwsAmplifyCognito.forgotPassword('yzvishal.vd@gmail.com').then((tracked) {
-                            print(tracked.state);
+                  }).catchError((error) {
+                    print(error);
+                  });
+                },
+                child: Text('Check'),
+              )),
+          ExpandablePanel(
+              header: Text(
+                'forgot password: $getAccessToken',
+                style: TextStyle(fontSize: 17),
+              ),
+              theme: ExpandableThemeData(
+                tapHeaderToExpand: true,
+                headerAlignment: ExpandablePanelHeaderAlignment.center,
+              ),
+              expanded: RaisedButton(
+                onPressed: () {
+                  FlutterAwsAmplifyCognito.forgotPassword(
+                          'yzvishal.vd@gmail.com')
+                      .then((tracked) {
+                    print(tracked.state);
 //                    setState(() {
 //                      identityId = identityId;
 //                    });
-                        }).catchError((error) {
-                            print(error);
-                        });
-                    },
-                    child: Text('Check'),
-                )
-            ),
-            ExpandablePanel(
-                header: Text(
-                    'confirm forgot password: $getAccessToken',
-                    style: TextStyle(fontSize: 17),
-                ),
-                theme: ExpandableThemeData(
-                    tapHeaderToExpand: true,
-                    headerAlignment: ExpandablePanelHeaderAlignment.center,
-                ),
-                expanded: RaisedButton(
-                    onPressed: () {
-                        FlutterAwsAmplifyCognito.confirmForgotPassword('yzvishal.vd@gmail.com', "vishalpvc", "678952").then((tracked) {
-                            print(tracked.state);
+                  }).catchError((error) {
+                    print(error);
+                  });
+                },
+                child: Text('Check'),
+              )),
+          ExpandablePanel(
+              header: Text(
+                'confirm forgot password: $getAccessToken',
+                style: TextStyle(fontSize: 17),
+              ),
+              theme: ExpandableThemeData(
+                tapHeaderToExpand: true,
+                headerAlignment: ExpandablePanelHeaderAlignment.center,
+              ),
+              expanded: RaisedButton(
+                onPressed: () {
+                  FlutterAwsAmplifyCognito.confirmForgotPassword(
+                          'yzvishal.vd@gmail.com', "vishalpvc", "678952")
+                      .then((tracked) {
+                    print(tracked.state);
 //                    setState(() {
 //                      identityId = identityId;
 //                    });
-                        }).catchError((error) {
-                            print(error);
-                        });
-                    },
-                    child: Text('Check'),
-                )
-            ),
+                  }).catchError((error) {
+                    print(error);
+                  });
+                },
+                child: Text('Check'),
+              )),
         ],
       ),
     );

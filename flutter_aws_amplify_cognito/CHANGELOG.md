@@ -1,3 +1,7 @@
+## 1.0.0+7
+
+* Fixed signOut return
+
 ## 1.0.0+6
 
 * Fixed token calls on the main thread
